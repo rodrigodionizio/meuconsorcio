@@ -1,0 +1,21 @@
+{
+  "concurso": null,
+  "data_sorteio": "exemplo (seed) — será substituído no 1º sorteio",
+  "federal_original": "83358",
+  "cota": 3177,
+  "alvo": 3358,
+  "alvo_bruto": 3358,
+  "sorteada": false,
+  "distancia": 181,
+  "prob_exata_por_sorteio_pct": 0.02,
+  "assembleias_esperadas_restantes": 975,
+  "premissas": {
+    "total_cotas": 5000,
+    "vacancia": 0.61,
+    "contemplados_por_assembleia": 2,
+    "cotas_ativas_estimadas": 1950,
+    "regra_digitos": [1, 5]
+  },
+  "atualizado_em": "seed inicial",
+  "historico": []
+}

@@ -1,0 +1,43 @@
+name: Atualizar Consórcio
+
+on:
+  schedule:
+    # 23:00 UTC = 20:00 (horário de Brasília), aos sábados.
+    # O sorteio da Federal de sábado costuma sair ~19h, então às 20h já está disponível.
+    - cron: "0 23 * * 6"
+    # Para acompanhar também a quarta-feira, descomente a linha abaixo:
+    # - cron: "0 23 * * 3"
+  workflow_dispatch: {}   # permite rodar manualmente pelo botão "Run workflow"
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Rodar o bot
+        run: python bot_consorcio.py
+
+      - name: Commitar o dados.json (se mudou)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dados.json
+          if git diff --staged --quiet; then
+            echo "Nenhuma mudança em dados.json."
+          else
+            git commit -m "Atualiza dados.json ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
