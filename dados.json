@@ -1,12 +1,12 @@
 {
-  "concurso": null,
-  "data_sorteio": "exemplo (seed) — será substituído no 1º sorteio",
-  "federal_original": "83358",
+  "concurso": 6067,
+  "data_sorteio": "20/05/2026",
+  "federal_original": "083207",
   "cota": 3177,
-  "alvo": 3358,
-  "alvo_bruto": 3358,
+  "alvo": 3207,
+  "alvo_bruto": 3207,
   "sorteada": false,
-  "distancia": 181,
+  "distancia": 30,
   "prob_exata_por_sorteio_pct": 0.02,
   "assembleias_esperadas_restantes": 975,
   "premissas": {
@@ -14,8 +14,20 @@
     "vacancia": 0.61,
     "contemplados_por_assembleia": 2,
     "cotas_ativas_estimadas": 1950,
-    "regra_digitos": [1, 5]
+    "regra_digitos": [
+      1,
+      5
+    ]
   },
-  "atualizado_em": "seed inicial",
-  "historico": []
+  "atualizado_em": "21/05/2026 14:44",
+  "historico": [
+    {
+      "concurso": 6067,
+      "data_sorteio": "20/05/2026",
+      "federal_original": "083207",
+      "alvo": 3207,
+      "distancia": 30,
+      "sorteada": false
+    }
+  ]
 }
