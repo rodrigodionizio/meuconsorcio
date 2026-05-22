@@ -6,7 +6,7 @@ on:
     # O sorteio da Federal de sábado costuma sair ~19h, então às 20h já está disponível.
     - cron: "0 23 * * 6"
     # Para acompanhar também a quarta-feira, descomente a linha abaixo:
-    # - cron: "0 23 * * 3"
+    - cron: "0 23 * * 3"
   workflow_dispatch: {}   # permite rodar manualmente pelo botão "Run workflow"
 
 permissions:
