@@ -12,7 +12,7 @@
   "premissas": {
     "total_cotas": 5000,
     "vacancia": 0.61,
-    "contemplados_por_assembleia": 2,
+    "contemplados_por_assembleia": 30,
     "cotas_ativas_estimadas": 1950,
     "regra_digitos": [
       1,
