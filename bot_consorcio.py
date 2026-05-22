@@ -38,7 +38,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 COTA = 3177             # número da sua cota
 TOTAL_COTAS = 5000      # tamanho do grupo
 VACANCIA = 0.61         # premissa sua: fração de cotas desistentes/inadimplentes
-CONTEMPLADOS_POR_ASSEMBLEIA = 2   # quantos são contemplados por mês (sorteio + lance) — ajuste
+CONTEMPLADOS_POR_ASSEMBLEIA = 11   # Quantidade de Lances Fixos 25%
+#CONTEMPLADOS_POR_ASSEMBLEIA = 2   # quantos são contemplados por mês (sorteio + lance) — ajuste
 
 # Regra de extração do alvo a partir do 1º prêmio da Federal (5 dígitos).
 # (1, 5) = "do 2º ao 5º algarismo" -> índices Python [1:5].
