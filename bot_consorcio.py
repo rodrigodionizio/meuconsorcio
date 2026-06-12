@@ -51,6 +51,7 @@ DIGITOS_INICIO = 1
 DIGITOS_FIM = 5
 
 API_FEDERAL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/federal"
+API_FEDERAL_FALLBACK = "https://loteriascaixa-api.herokuapp.com/api/federal/latest"  # espelho público (fallback)
 HISTORICO_MAX = 200     # quantos sorteios manter no histórico
 ARQUIVO_SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados.json")
 
@@ -106,8 +107,8 @@ def analisar(numero_federal, concurso=None, data_sorteio=None):
     }
 
 
-def buscar_federal():
-    """Lê o resultado mais recente da Federal e devolve (1o_premio, concurso, data)."""
+def _buscar_federal_oficial():
+    """Lê o resultado mais recente na API oficial da Caixa."""
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -116,15 +117,53 @@ def buscar_federal():
         "Accept": "application/json",
     }
     r = requests.get(API_FEDERAL, headers=headers, verify=False, timeout=30)
-    r.raise_for_status()
+    if r.status_code != 200:
+        raise ValueError("API oficial respondeu HTTP %s. Corpo: %s"
+                         % (r.status_code, r.text[:300]))
     dados = r.json()
 
     premios = dados.get("listaDezenas") or dados.get("dezenasSorteadasOrdemSorteio")
     if not premios:
-        raise ValueError("Resposta da API sem lista de prêmios. Chaves: %s"
+        raise ValueError("Resposta da API oficial sem lista de prêmios. Chaves: %s"
                          % list(dados.keys()))
     primeiro = premios[0]
     return primeiro, dados.get("numero"), dados.get("dataApuracao")
+
+
+def _buscar_federal_fallback():
+    """Lê o resultado mais recente em um espelho público (usado se a API
+    oficial da Caixa estiver indisponível/bloqueada, comum em runners de CI)."""
+    headers = {"Accept": "application/json"}
+    r = requests.get(API_FEDERAL_FALLBACK, headers=headers, timeout=30)
+    if r.status_code != 200:
+        raise ValueError("API fallback respondeu HTTP %s. Corpo: %s"
+                         % (r.status_code, r.text[:300]))
+    dados = r.json()
+
+    premios = dados.get("dezenasOrdemSorteio") or dados.get("dezenas")
+    if not premios:
+        raise ValueError("Resposta da API fallback sem lista de prêmios. Chaves: %s"
+                         % list(dados.keys()))
+    primeiro = premios[0]
+    return primeiro, dados.get("concurso"), dados.get("data")
+
+
+def buscar_federal():
+    """Lê o resultado mais recente da Federal e devolve (1o_premio, concurso, data).
+
+    Tenta primeiro a API oficial da Caixa; se falhar, tenta um espelho
+    público como fallback antes de desistir.
+    """
+    try:
+        return _buscar_federal_oficial()
+    except Exception as erro_oficial:  # noqa: BLE001
+        try:
+            return _buscar_federal_fallback()
+        except Exception as erro_fallback:  # noqa: BLE001
+            raise RuntimeError(
+                "Falha na API oficial (%s) e no fallback (%s)"
+                % (erro_oficial, erro_fallback)
+            ) from erro_fallback
 
 
 def carregar_existente():
