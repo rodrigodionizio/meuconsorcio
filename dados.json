@@ -1,12 +1,12 @@
 {
-  "concurso": 6081,
-  "data_sorteio": "08/07/2026",
-  "federal_original": "022268",
+  "concurso": 6082,
+  "data_sorteio": "11/07/2026",
+  "federal_original": "095866",
   "cota": 3177,
-  "alvo": 2268,
-  "alvo_bruto": 2268,
+  "alvo": 866,
+  "alvo_bruto": 5866,
   "sorteada": false,
-  "distancia": 909,
+  "distancia": 2311,
   "prob_exata_por_sorteio_pct": 0.02,
   "assembleias_esperadas_restantes": 177,
   "premissas": {
@@ -19,8 +19,16 @@
       5
     ]
   },
-  "atualizado_em": "11/07/2026 23:22",
+  "atualizado_em": "13/07/2026 17:53",
   "historico": [
+    {
+      "concurso": 6082,
+      "data_sorteio": "11/07/2026",
+      "federal_original": "095866",
+      "alvo": 866,
+      "distancia": 2311,
+      "sorteada": false
+    },
     {
       "concurso": 6081,
       "data_sorteio": "08/07/2026",
