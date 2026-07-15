@@ -19,7 +19,7 @@
       5
     ]
   },
-  "atualizado_em": "13/07/2026 17:54",
+  "atualizado_em": "15/07/2026 20:17",
   "historico": [
     {
       "concurso": 6082,
@@ -149,5 +149,10 @@
       "distancia": 30,
       "sorteada": false
     }
-  ]
+  ],
+  "data": "11/07/2026",
+  "federal": "095866",
+  "posicao_fila": 450.6,
+  "status": "FORA DO RAIO",
+  "espera_estimada": 65
 }
