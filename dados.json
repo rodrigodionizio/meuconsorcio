@@ -1,12 +1,12 @@
 {
-  "concurso": 6079,
-  "data_sorteio": "02/07/2026",
-  "federal_original": "099107",
+  "concurso": 6087,
+  "data_sorteio": null,
+  "federal_original": null,
   "cota": 3177,
-  "alvo": 4107,
-  "alvo_bruto": 9107,
+  "alvo": 4621,
+  "alvo_bruto": null,
   "sorteada": false,
-  "distancia": 930,
+  "distancia": 1444,
   "prob_exata_por_sorteio_pct": 0.02,
   "assembleias_esperadas_restantes": 177,
   "premissas": {
@@ -19,8 +19,72 @@
       5
     ]
   },
-  "atualizado_em": "02/07/2026 00:00",
+  "atualizado_em": "25/08/2026 00:00",
   "historico": [
+    {
+      "concurso": 6087,
+      "data_sorteio": null,
+      "federal_original": null,
+      "alvo": 4621,
+      "distancia": 1444,
+      "sorteada": false
+    },
+    {
+      "concurso": 6086,
+      "data_sorteio": null,
+      "federal_original": null,
+      "alvo": 3522,
+      "distancia": 345,
+      "sorteada": false
+    },
+    {
+      "concurso": 6085,
+      "data_sorteio": null,
+      "federal_original": null,
+      "alvo": 2889,
+      "distancia": 288,
+      "sorteada": false
+    },
+    {
+      "concurso": 6084,
+      "data_sorteio": null,
+      "federal_original": null,
+      "alvo": 2667,
+      "distancia": 510,
+      "sorteada": false
+    },
+    {
+      "concurso": 6083,
+      "data_sorteio": null,
+      "federal_original": null,
+      "alvo": 4184,
+      "distancia": 1007,
+      "sorteada": false
+    },
+    {
+      "concurso": 6082,
+      "data_sorteio": "11/07/2026",
+      "federal_original": "095866",
+      "alvo": 866,
+      "distancia": 2311,
+      "sorteada": false
+    },
+    {
+      "concurso": 6081,
+      "data_sorteio": "08/07/2026",
+      "federal_original": "022268",
+      "alvo": 2268,
+      "distancia": 909,
+      "sorteada": false
+    },
+    {
+      "concurso": 6080,
+      "data_sorteio": "04/07/2026",
+      "federal_original": "080246",
+      "alvo": 246,
+      "distancia": 2931,
+      "sorteada": false
+    },
     {
       "concurso": 6079,
       "data_sorteio": "02/07/2026",

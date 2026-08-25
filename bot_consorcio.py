@@ -127,7 +127,11 @@ def _buscar_federal_oficial():
         raise ValueError("Resposta da API oficial sem lista de prêmios. Chaves: %s"
                          % list(dados.keys()))
     primeiro = premios[0]
-    return primeiro, dados.get("numero"), dados.get("dataApuracao")
+    concurso = (dados.get("numero") or dados.get("numeroConcurso")
+                or dados.get("concurso") or dados.get("id"))
+    data = (dados.get("dataApuracao") or dados.get("data") or dados.get("dataSorteio")
+            or dados.get("dataResultado"))
+    return primeiro, concurso, data
 
 
 def _buscar_federal_fallback():
