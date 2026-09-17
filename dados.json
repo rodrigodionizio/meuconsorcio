@@ -1,12 +1,12 @@
 {
-  "concurso": 6099,
+  "concurso": 6100,
   "data_sorteio": "11/07/2026",
   "federal_original": "095866",
   "cota": 3177,
-  "alvo": 4423,
+  "alvo": 28,
   "alvo_bruto": 5866,
   "sorteada": false,
-  "distancia": 1246,
+  "distancia": 3149,
   "prob_exata_por_sorteio_pct": 0.02,
   "assembleias_esperadas_restantes": 177,
   "premissas": {
@@ -19,8 +19,20 @@
       5
     ]
   },
-  "atualizado_em": "12/09/2026 21:47",
+  "atualizado_em": "16/09/2026 21:55",
   "historico": [
+    {
+      "concurso": 6100,
+      "data": "13/09/2026",
+      "federal": "070028",
+      "alvo": 28,
+      "cota": 3177,
+      "distancia": 3149,
+      "posicao_fila": 614.1,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "16/09/2026 21:55"
+    },
     {
       "concurso": 6099,
       "data": "09/09/2026",
@@ -354,9 +366,9 @@
       "sorteada": false
     }
   ],
-  "data": "09/09/2026",
-  "federal": "064423",
-  "posicao_fila": 243.0,
+  "data": "13/09/2026",
+  "federal": "070028",
+  "posicao_fila": 614.1,
   "status": "FORA DO RAIO",
   "espera_estimada": 65
 }
