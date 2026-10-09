@@ -1,31 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
-Motor de acompanhamento de consórcio por sorteio (Loteria Federal da Caixa).
-
-O QUE ESTE SCRIPT FAZ DE FORMA CONFIÁVEL (determinístico):
-  - Busca o resultado oficial da Loteria Federal na API da Caixa.
-  - Extrai o "alvo" do consórcio a partir do 1º prêmio, segundo a regra
-    configurável abaixo (padrão: 2º ao 5º algarismo de um número de 5 dígitos).
-  - Verifica se a SUA cota foi o alvo daquele sorteio (sim / não).
-  - Guarda um histórico em dados.json para você acumular dados reais ao longo
-    do tempo.
-
-SOBRE AS "CHANCES" (leia com atenção):
-  Cada sorteio da Federal é independente. A distância entre o alvo de uma
-  semana e a sua cota NÃO prevê o resultado da semana seguinte. Por isso os
-  campos de "cenário" abaixo são apenas estimativas transparentes, baseadas
-  nas SUAS premissas (vacância etc.). Use-os como referência, não como
-  garantia — e não tome decisões de lance/financeiras só com base neles.
-
-Modo de uso:
-  python bot_consorcio.py            -> busca a Federal e atualiza dados.json
-  python bot_consorcio.py 83358      -> modo teste/offline: só calcula e imprime
-"""
-
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 import requests
 import urllib3
@@ -33,187 +10,119 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ---------------------------------------------------------------------------
-# CONFIGURAÇÃO — ajuste aqui
+# CONFIGURAÇÃO OFICIAL - GRUPO 1147
 # ---------------------------------------------------------------------------
-COTA = 3177             # número da sua cota
-TOTAL_COTAS = 5000      # tamanho do grupo
-VACANCIA = 0.61         # premissa sua: fração de cotas desistentes/inadimplentes
-CONTEMPLADOS_POR_ASSEMBLEIA = 11   # Quantidade de Lances Fixos 25%
-#CONTEMPLADOS_POR_ASSEMBLEIA = 2   # quantos são contemplados por mês (sorteio + lance) — ajuste
+COTA_RODRIGO = 3177
+TOTAL_COTAS_GRUPO = 5000
+VACANCIA_ESTIMADA = 0.61  # 61% de desistentes conforme o app
+CONTEMPLADOS_TOTAL_MES = 30  # Média total (Sorteio + Livres + Fixos)
+VAGAS_LANCE_FIXO_25 = 11     # Vagas específicas da sua categoria
 
-# Regra de extração do alvo a partir do 1º prêmio da Federal (5 dígitos).
-# (1, 5) = "do 2º ao 5º algarismo" -> índices Python [1:5].
-# Ex.: prêmio 83358 -> dígitos 2..5 = "3358" -> alvo 3358.
-# IMPORTANTE: confira contra assembleias passadas (use a calculadora do site
-# ou rode "python bot_consorcio.py <numero>") e ajuste se o seu contrato usar
-# outra regra.
-DIGITOS_INICIO = 1
+# Regra VW: 2º ao 5º algarismo do 1º prêmio
+DIGITOS_INICIO = 1 
 DIGITOS_FIM = 5
 
-API_FEDERAL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/federal"
-API_FEDERAL_FALLBACK = "https://loteriascaixa-api.herokuapp.com/api/federal/latest"  # espelho público (fallback)
-HISTORICO_MAX = 200     # quantos sorteios manter no histórico
+# Fuso Horário de Brasília (Leste Mineiro)
+FUSO_BR = timezone(timedelta(hours=-3))
+
 ARQUIVO_SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados.json")
 
-
 def extrair_alvo(numero_federal):
-    """Aplica a regra do consórcio ao 1º prêmio e devolve (alvo, bruto).
-
-    alvo  -> número entre 1 e TOTAL_COTAS (cota equivalente sorteada)
-    bruto -> os 4 dígitos extraídos antes da normalização do grupo
-    """
+    """Extrai o milhar alvo e aplica a regra de normalização do grupo."""
+    # Garante 5 dígitos (ex: 83358) ou trata 6 dígitos se vier série (ex: 083358)
     s = "".join(ch for ch in str(numero_federal) if ch.isdigit())
-    s = s.zfill(5)[-5:]                      # garante exatamente 5 dígitos
-    bruto = int(s[DIGITOS_INICIO:DIGITOS_FIM])
-    alvo = bruto % TOTAL_COTAS               # normaliza para o tamanho do grupo
-    if alvo == 0:                            # 0000/5000 -> última cota
-        alvo = TOTAL_COTAS
-    return alvo, bruto
+    s = s.zfill(5)[-5:] 
+    
+    # Isola o milhar (2º ao 5º dígito)
+    milhar_extraido = int(s[DIGITOS_INICIO:DIGITOS_FIM])
+    
+    # Aplica a regra de normalização para o grupo de 5000
+    alvo = milhar_extraido % TOTAL_COTAS_GRUPO
+    if alvo == 0: 
+        alvo = TOTAL_COTAS_GRUPO
+        
+    return alvo, milhar_extraido
 
+def calcular_probabilidades(alvo):
+    """Calcula a posição real na fila considerando a vacância de 61%."""
+    distancia = abs(alvo - COTA_RODRIGO)
+    
+    # Estimativa de quantas pessoas 'vivas' existem no trajeto do sorteio
+    concorrentes_ativos = distancia * (1 - VACANCIA_ESTIMADA)
+    
+    # Estimativa de quem deu lance fixo de 25% (aprox 50% dos ativos)
+    fila_real_estimada = round(concorrentes_ativos * 0.5, 1)
+    
+    # Status de proximidade (Régua de Corte histórica ~22)
+    if fila_real_estimada <= VAGAS_LANCE_FIXO_25:
+        status = "ZONA DE VITÓRIA (Top 11)"
+    elif fila_real_estimada <= 25:
+        status = "ZONA DE CALOR (Iminente)"
+    else:
+        status = "FORA DO RAIO"
 
-def analisar(numero_federal, concurso=None, data_sorteio=None):
-    """Calcula o resultado determinístico + estimativas transparentes."""
-    alvo, bruto = extrair_alvo(numero_federal)
-    distancia = abs(alvo - COTA)
-    sorteada = (alvo == COTA)
-
-    # --- Estatística honesta (modelo de sorteios independentes) ---
-    cotas_ativas = max(1, round(TOTAL_COTAS * (1 - VACANCIA)))
-    # Chance de a SUA cota ser exatamente o alvo num único sorteio:
-    prob_exata_pct = round(100 / TOTAL_COTAS, 4)
-    # Se o grupo contempla "a cota mais próxima ainda não contemplada", o que
-    # importa no longo prazo é o tempo esperado até a contemplação:
-    assembleias_esperadas = round(cotas_ativas / max(1, CONTEMPLADOS_POR_ASSEMBLEIA))
+    # Estimativa de espera baseada na saúde financeira do grupo (30 contemplados/mês)
+    ativos_totais = TOTAL_COTAS_GRUPO * (1 - VACANCIA_ESTIMADA)
+    meses_restantes = round(ativos_totais / CONTEMPLADOS_TOTAL_MES)
 
     return {
-        "concurso": concurso,
-        "data_sorteio": data_sorteio,
-        "federal_original": str(numero_federal),
-        "cota": COTA,
-        "alvo": alvo,
-        "alvo_bruto": bruto,
-        "sorteada": sorteada,
-        "distancia": distancia,
-        "prob_exata_por_sorteio_pct": prob_exata_pct,
-        "assembleias_esperadas_restantes": assembleias_esperadas,
-        "premissas": {
-            "total_cotas": TOTAL_COTAS,
-            "vacancia": VACANCIA,
-            "contemplados_por_assembleia": CONTEMPLADOS_POR_ASSEMBLEIA,
-            "cotas_ativas_estimadas": cotas_ativas,
-            "regra_digitos": [DIGITOS_INICIO, DIGITOS_FIM],
-        },
-        "atualizado_em": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "distancia_nominal": distancia,
+        "fila_real_estimada": fila_real_estimada,
+        "status": status,
+        "meses_espera_estatistica": meses_restantes
     }
-
-
-def _buscar_federal_oficial():
-    """Lê o resultado mais recente na API oficial da Caixa."""
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-        ),
-        "Accept": "application/json",
-    }
-    r = requests.get(API_FEDERAL, headers=headers, verify=False, timeout=30)
-    if r.status_code != 200:
-        raise ValueError("API oficial respondeu HTTP %s. Corpo: %s"
-                         % (r.status_code, r.text[:300]))
-    dados = r.json()
-
-    premios = dados.get("listaDezenas") or dados.get("dezenasSorteadasOrdemSorteio")
-    if not premios:
-        raise ValueError("Resposta da API oficial sem lista de prêmios. Chaves: %s"
-                         % list(dados.keys()))
-    primeiro = premios[0]
-    return primeiro, dados.get("numero"), dados.get("dataApuracao")
-
-
-def _buscar_federal_fallback():
-    """Lê o resultado mais recente em um espelho público (usado se a API
-    oficial da Caixa estiver indisponível/bloqueada, comum em runners de CI)."""
-    headers = {"Accept": "application/json"}
-    r = requests.get(API_FEDERAL_FALLBACK, headers=headers, timeout=30)
-    if r.status_code != 200:
-        raise ValueError("API fallback respondeu HTTP %s. Corpo: %s"
-                         % (r.status_code, r.text[:300]))
-    dados = r.json()
-
-    premios = dados.get("dezenasOrdemSorteio") or dados.get("dezenas")
-    if not premios:
-        raise ValueError("Resposta da API fallback sem lista de prêmios. Chaves: %s"
-                         % list(dados.keys()))
-    primeiro = premios[0]
-    return primeiro, dados.get("concurso"), dados.get("data")
-
 
 def buscar_federal():
-    """Lê o resultado mais recente da Federal e devolve (1o_premio, concurso, data).
-
-    Tenta primeiro a API oficial da Caixa; se falhar, tenta um espelho
-    público como fallback antes de desistir.
-    """
+    """Busca o resultado oficial na API da Caixa."""
+    url = "https://servicebus2.caixa.gov.br/portaldeloterias/api/federal"
+    headers = {"User-Agent": "Mozilla/5.0"}
     try:
-        return _buscar_federal_oficial()
-    except Exception as erro_oficial:  # noqa: BLE001
-        try:
-            return _buscar_federal_fallback()
-        except Exception as erro_fallback:  # noqa: BLE001
-            raise RuntimeError(
-                "Falha na API oficial (%s) e no fallback (%s)"
-                % (erro_oficial, erro_fallback)
-            ) from erro_fallback
-
-
-def carregar_existente():
-    if os.path.exists(ARQUIVO_SAIDA):
-        try:
-            with open(ARQUIVO_SAIDA, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except (json.JSONDecodeError, ValueError):
-            return {}
-    return {}
-
+        r = requests.get(url, headers=headers, verify=False, timeout=20)
+        dados = r.json()
+        primeiro_premio = dados['listaDezenas'][0]
+        return primeiro_premio, dados['numero'], dados['dataApuracao']
+    except:
+        # Fallback caso a API principal esteja fora
+        r = requests.get("https://loteriascaixa-api.herokuapp.com/api/federal/latest")
+        dados = r.json()
+        return dados['dezenas'][0], dados['concurso'], dados['data']
 
 def salvar(resultado):
-    base = carregar_existente()
-    historico = base.get("historico", [])
+    # Carrega histórico para não duplicar
+    if os.path.exists(ARQUIVO_SAIDA):
+        with open(ARQUIVO_SAIDA, "r") as f:
+            db = json.load(f)
+    else:
+        db = {"historico": []}
 
-    # Evita duplicar o mesmo concurso no topo do histórico
-    if not historico or historico[0].get("concurso") != resultado.get("concurso"):
-        historico.insert(0, {
-            "concurso": resultado["concurso"],
-            "data_sorteio": resultado["data_sorteio"],
-            "federal_original": resultado["federal_original"],
-            "alvo": resultado["alvo"],
-            "distancia": resultado["distancia"],
-            "sorteada": resultado["sorteada"],
-        })
-    historico = historico[:HISTORICO_MAX]
-
-    saida = dict(resultado)
-    saida["historico"] = historico
-    with open(ARQUIVO_SAIDA, "w", encoding="utf-8") as f:
-        json.dump(saida, f, ensure_ascii=False, indent=2)
-    return saida
-
+    if not db["historico"] or db["historico"][0]["concurso"] != resultado["concurso"]:
+        db["historico"].insert(0, resultado)
+    
+    db.update(resultado) # Atualiza dados do topo
+    db["historico"] = db["historico"][:50] # Mantém 50 registros
+    
+    with open(ARQUIVO_SAIDA, "w") as f:
+        json.dump(db, f, indent=2)
 
 def main():
-    try:
-        primeiro, concurso, data_sorteio = buscar_federal()
-        resultado = analisar(primeiro, concurso, data_sorteio)
-        salvar(resultado)
-        print("OK - concurso %s | 1o premio %s | alvo %s | sorteada=%s"
-              % (concurso, primeiro, resultado["alvo"], resultado["sorteada"]))
-    except Exception as e:  # noqa: BLE001
-        print("ERRO ao atualizar:", e, file=sys.stderr)
-        sys.exit(1)
-
+    primeiro, concurso, data = buscar_federal()
+    alvo, bruto = extrair_alvo(primeiro)
+    probs = calcular_probabilidades(alvo)
+    
+    final = {
+        "concurso": concurso,
+        "data": data,
+        "federal": primeiro,
+        "alvo": alvo,
+        "cota": COTA_RODRIGO,
+        "distancia": probs["distancia_nominal"],
+        "posicao_fila": probs["fila_real_estimada"],
+        "status": probs["status"],
+        "espera_estimada": probs["meses_espera_estatistica"],
+        "atualizado_em": datetime.now(FUSO_BR).strftime("%d/%m/%Y %H:%M")
+    }
+    salvar(final)
+    print(f"Sucesso! Alvo: {alvo} | Fila: {probs['fila_real_estimada']}")
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        # Modo teste/offline: calcula sem buscar nem salvar.
-        print(json.dumps(analisar(sys.argv[1]), ensure_ascii=False, indent=2))
-    else:
-        main()
+    main()

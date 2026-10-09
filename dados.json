@@ -1,12 +1,12 @@
 {
-  "concurso": 6072,
-  "data_sorteio": "06/06/2026",
-  "federal_original": "022573",
+  "concurso": 6107,
+  "data_sorteio": "11/07/2026",
+  "federal_original": "095866",
   "cota": 3177,
-  "alvo": 2573,
-  "alvo_bruto": 2573,
+  "alvo": 2050,
+  "alvo_bruto": 5866,
   "sorteada": false,
-  "distancia": 604,
+  "distancia": 1127,
   "prob_exata_por_sorteio_pct": 0.02,
   "assembleias_esperadas_restantes": 177,
   "premissas": {
@@ -19,8 +19,376 @@
       5
     ]
   },
-  "atualizado_em": "10/06/2026 23:28",
+  "atualizado_em": "07/10/2026 23:19",
   "historico": [
+    {
+      "concurso": 6107,
+      "data": "07/10/2026",
+      "federal": "042050",
+      "alvo": 2050,
+      "cota": 3177,
+      "distancia": 1127,
+      "posicao_fila": 219.8,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "07/10/2026 23:19"
+    },
+    {
+      "concurso": 6106,
+      "data": "03/10/2026",
+      "federal": "017469",
+      "alvo": 2469,
+      "cota": 3177,
+      "distancia": 708,
+      "posicao_fila": 138.1,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "03/10/2026 23:30"
+    },
+    {
+      "concurso": 6105,
+      "data": "30/09/2026",
+      "federal": "041092",
+      "alvo": 1092,
+      "cota": 3177,
+      "distancia": 2085,
+      "posicao_fila": 406.6,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "30/09/2026 22:38"
+    },
+    {
+      "concurso": 6103,
+      "data": "23/09/2026",
+      "federal": "040292",
+      "alvo": 292,
+      "cota": 3177,
+      "distancia": 2885,
+      "posicao_fila": 562.6,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "26/09/2026 22:16"
+    },
+    {
+      "concurso": 6102,
+      "data": "20/09/2026",
+      "federal": "083520",
+      "alvo": 3520,
+      "cota": 3177,
+      "distancia": 343,
+      "posicao_fila": 66.9,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "23/09/2026 21:56"
+    },
+    {
+      "concurso": 6101,
+      "data": "16/09/2026",
+      "federal": "047125",
+      "alvo": 2125,
+      "cota": 3177,
+      "distancia": 1052,
+      "posicao_fila": 205.1,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "19/09/2026 21:56"
+    },
+    {
+      "concurso": 6100,
+      "data": "13/09/2026",
+      "federal": "070028",
+      "alvo": 28,
+      "cota": 3177,
+      "distancia": 3149,
+      "posicao_fila": 614.1,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "16/09/2026 21:55"
+    },
+    {
+      "concurso": 6099,
+      "data": "09/09/2026",
+      "federal": "064423",
+      "alvo": 4423,
+      "cota": 3177,
+      "distancia": 1246,
+      "posicao_fila": 243.0,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "12/09/2026 21:47"
+    },
+    {
+      "concurso": 6098,
+      "data": "06/09/2026",
+      "federal": "048337",
+      "alvo": 3337,
+      "cota": 3177,
+      "distancia": 160,
+      "posicao_fila": 31.2,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "09/09/2026 21:40"
+    },
+    {
+      "concurso": 6097,
+      "data": "02/09/2026",
+      "federal": "030921",
+      "alvo": 921,
+      "cota": 3177,
+      "distancia": 2256,
+      "posicao_fila": 439.9,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "05/09/2026 21:47"
+    },
+    {
+      "concurso": 6096,
+      "data": "30/08/2026",
+      "federal": "008932",
+      "alvo": 3932,
+      "cota": 3177,
+      "distancia": 755,
+      "posicao_fila": 147.2,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "02/09/2026 21:46"
+    },
+    {
+      "concurso": 6095,
+      "data": "26/08/2026",
+      "federal": "004574",
+      "alvo": 4574,
+      "cota": 3177,
+      "distancia": 1397,
+      "posicao_fila": 272.4,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "29/08/2026 22:11"
+    },
+    {
+      "concurso": 6094,
+      "data": "23/08/2026",
+      "federal": "013000",
+      "alvo": 3000,
+      "cota": 3177,
+      "distancia": 177,
+      "posicao_fila": 34.5,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "27/08/2026 01:06"
+    },
+    {
+      "concurso": 6093,
+      "data": "19/08/2026",
+      "federal": "080574",
+      "alvo": 574,
+      "cota": 3177,
+      "distancia": 2603,
+      "posicao_fila": 507.6,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "22/08/2026 20:27"
+    },
+    {
+      "concurso": 6092,
+      "data": "16/08/2026",
+      "federal": "052745",
+      "alvo": 2745,
+      "cota": 3177,
+      "distancia": 432,
+      "posicao_fila": 84.2,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "19/08/2026 20:11"
+    },
+    {
+      "concurso": 6091,
+      "data": "12/08/2026",
+      "federal": "086997",
+      "alvo": 1997,
+      "cota": 3177,
+      "distancia": 1180,
+      "posicao_fila": 230.1,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "15/08/2026 20:26"
+    },
+    {
+      "concurso": 6090,
+      "data": "09/08/2026",
+      "federal": "016821",
+      "alvo": 1821,
+      "cota": 3177,
+      "distancia": 1356,
+      "posicao_fila": 264.4,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "12/08/2026 20:27"
+    },
+    {
+      "concurso": 6089,
+      "data": "05/08/2026",
+      "federal": "056952",
+      "alvo": 1952,
+      "cota": 3177,
+      "distancia": 1225,
+      "posicao_fila": 238.9,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "08/08/2026 20:10"
+    },
+    {
+      "concurso": 6088,
+      "data": "02/08/2026",
+      "federal": "043770",
+      "alvo": 3770,
+      "cota": 3177,
+      "distancia": 593,
+      "posicao_fila": 115.6,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "05/08/2026 20:19"
+    },
+    {
+      "concurso": 6087,
+      "data": "29/07/2026",
+      "federal": "084621",
+      "alvo": 4621,
+      "cota": 3177,
+      "distancia": 1444,
+      "posicao_fila": 281.6,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "01/08/2026 20:23"
+    },
+    {
+      "concurso": 6086,
+      "data": "26/07/2026",
+      "federal": "048522",
+      "alvo": 3522,
+      "cota": 3177,
+      "distancia": 345,
+      "posicao_fila": 67.3,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "29/07/2026 20:18"
+    },
+    {
+      "concurso": 6085,
+      "data": "22/07/2026",
+      "federal": "077889",
+      "alvo": 2889,
+      "cota": 3177,
+      "distancia": 288,
+      "posicao_fila": 56.2,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "25/07/2026 20:24"
+    },
+    {
+      "concurso": 6084,
+      "data": "19/07/2026",
+      "federal": "017667",
+      "alvo": 2667,
+      "cota": 3177,
+      "distancia": 510,
+      "posicao_fila": 99.5,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "22/07/2026 20:18"
+    },
+    {
+      "concurso": 6083,
+      "data": "15/07/2026",
+      "federal": "039184",
+      "alvo": 4184,
+      "cota": 3177,
+      "distancia": 1007,
+      "posicao_fila": 196.4,
+      "status": "FORA DO RAIO",
+      "espera_estimada": 65,
+      "atualizado_em": "18/07/2026 20:22"
+    },
+    {
+      "concurso": 6082,
+      "data_sorteio": "11/07/2026",
+      "federal_original": "095866",
+      "alvo": 866,
+      "distancia": 2311,
+      "sorteada": false
+    },
+    {
+      "concurso": 6081,
+      "data_sorteio": "08/07/2026",
+      "federal_original": "022268",
+      "alvo": 2268,
+      "distancia": 909,
+      "sorteada": false
+    },
+    {
+      "concurso": 6080,
+      "data_sorteio": "04/07/2026",
+      "federal_original": "080246",
+      "alvo": 246,
+      "distancia": 2931,
+      "sorteada": false
+    },
+    {
+      "concurso": 6079,
+      "data_sorteio": "01/07/2026",
+      "federal_original": "099107",
+      "alvo": 4107,
+      "distancia": 930,
+      "sorteada": false
+    },
+    {
+      "concurso": 6078,
+      "data_sorteio": "27/06/2026",
+      "federal_original": "006440",
+      "alvo": 1440,
+      "distancia": 1737,
+      "sorteada": false
+    },
+    {
+      "concurso": 6077,
+      "data_sorteio": "25/06/2026",
+      "federal_original": "014291",
+      "alvo": 4291,
+      "distancia": 1114,
+      "sorteada": false
+    },
+    {
+      "concurso": 6076,
+      "data_sorteio": "20/06/2026",
+      "federal_original": "050673",
+      "alvo": 673,
+      "distancia": 2504,
+      "sorteada": false
+    },
+    {
+      "concurso": 6075,
+      "data_sorteio": "17/06/2026",
+      "federal_original": "053952",
+      "alvo": 3952,
+      "distancia": 775,
+      "sorteada": false
+    },
+    {
+      "concurso": 6074,
+      "data_sorteio": "14/06/2026",
+      "federal_original": "000958",
+      "alvo": 958,
+      "distancia": 2219,
+      "sorteada": false
+    },
+    {
+      "concurso": 6073,
+      "data_sorteio": "10/06/2026",
+      "federal_original": "024807",
+      "alvo": 4807,
+      "distancia": 1630,
+      "sorteada": false
+    },
     {
       "concurso": 6072,
       "data_sorteio": "06/06/2026",
@@ -69,5 +437,10 @@
       "distancia": 30,
       "sorteada": false
     }
-  ]
+  ],
+  "data": "07/10/2026",
+  "federal": "042050",
+  "posicao_fila": 219.8,
+  "status": "FORA DO RAIO",
+  "espera_estimada": 65
 }
