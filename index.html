@@ -186,8 +186,8 @@
           var tr = document.createElement('tr');
           tr.innerHTML =
             '<td>' + (h.concurso||'—') + '</td>' +
-            '<td>' + (h.data_sorteio||'—') + '</td>' +
-            '<td>' + (h.federal_original||'—') + '</td>' +
+            '<td>' + (h.data_sorteio||h.data||'—') + '</td>' +
+            '<td>' + (h.federal_original||h.federal||'—') + '</td>' +
             '<td' + (h.sorteada?' class="hit"':'') + '>' + (h.alvo!=null?h.alvo:'—') + '</td>' +
             '<td>' + (h.distancia!=null?h.distancia:'—') + '</td>';
           body.appendChild(tr);
