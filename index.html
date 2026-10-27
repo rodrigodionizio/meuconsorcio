@@ -1,202 +1,471 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consórcio VW — Cota 3177</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Consórcio VW · Cota 3177</title>
+  <meta name="description" content="Acompanhe em tempo real se a cota 3177 do consórcio Volkswagen foi contemplada no último sorteio da Loteria Federal da Caixa. Probabilidades, histórico e calculadora de calibração.">
+  <meta name="keywords" content="consórcio volkswagen, cota 3177, loteria federal, contemplação, sorteio consórcio, acompanhar cota consórcio">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Rodrigo Dionizio">
+  <link rel="canonical" href="https://rodrigodionizio.github.io/meuconsorcio/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Consórcio VW · Cota 3177">
+  <meta property="og:description" content="Acompanhe em tempo real a cota 3177 do consórcio VW pelo sorteio da Loteria Federal.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Consórcio VW · Cota 3177">
+  <meta name="twitter:description" content="Acompanhe se sua cota foi contemplada no sorteio da Loteria Federal.">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Consórcio VW – Acompanhamento Cota 3177","description":"Painel de acompanhamento da cota 3177 do consórcio Volkswagen via Loteria Federal da Caixa","applicationCategory":"FinanceApplication","operatingSystem":"Web","author":{"@type":"Person","name":"Rodrigo Dionizio"}}
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: {
+              50:  '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            surface: { DEFAULT: '#ffffff', dark: '#0f172a' },
+          },
+          animation: {
+            'fade-up':   'fadeUp .5s ease both',
+            'fade-in':   'fadeIn .4s ease both',
+            'bar-grow':  'barGrow 1s cubic-bezier(.22,1,.36,1) both',
+            'pulse-dot': 'pulseDot 2s ease infinite',
+            'count-up':  'countUp .6s ease both',
+          },
+          keyframes: {
+            fadeUp:    { from: { opacity: 0, transform: 'translateY(16px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+            fadeIn:    { from: { opacity: 0 }, to: { opacity: 1 } },
+            barGrow:   { from: { width: '0%' }, to: {} },
+            pulseDot:  { '0%,100%': { opacity: 1, transform: 'scale(1)' }, '50%': { opacity: .6, transform: 'scale(1.6)' } },
+            countUp:   { from: { opacity: 0, transform: 'scale(.9)' }, to: { opacity: 1, transform: 'scale(1)' } },
+          },
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root{
-      --bg:#0f172a; --card:#1e293b; --soft:#334155; --txt:#e2e8f0;
-      --muted:#94a3b8; --ok:#22c55e; --no:#f43f5e; --accent:#38bdf8;
+    /* ── Tokens ── */
+    :root {
+      --bg:      #f5f7ff;
+      --surface: #ffffff;
+      --border:  #e5e8f5;
+      --muted:   #64748b;
+      --txt:     #0f172a;
+      --brand:   #4f46e5;
+      --ok:      #059669;
+      --no:      #6366f1;
+      --warn:    #d97706;
     }
-    *{box-sizing:border-box}
-    body{
-      font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg); color:var(--txt); margin:0; padding:24px;
-      line-height:1.5;
+    .dark {
+      --bg:      #0b0f1a;
+      --surface: #111827;
+      --border:  #1e293b;
+      --muted:   #94a3b8;
+      --txt:     #f1f5f9;
+      --brand:   #818cf8;
+      --ok:      #34d399;
+      --no:      #a5b4fc;
+      --warn:    #fbbf24;
     }
-    .wrap{max-width:720px; margin:0 auto}
-    h1{font-size:1.25rem; font-weight:700; margin:0 0 4px}
-    .sub{color:var(--muted); font-size:.85rem; margin-bottom:20px}
-    .card{
-      background:var(--card); border:1px solid var(--soft); border-radius:16px;
-      padding:22px; margin-bottom:18px;
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      -webkit-font-smoothing: antialiased;
     }
-    .verdict{text-align:center; padding:26px 18px}
-    .verdict .big{font-size:2.1rem; font-weight:800; letter-spacing:.5px}
-    .verdict.sim .big{color:var(--ok)}
-    .verdict.nao .big{color:var(--no)}
-    .verdict .small{color:var(--muted); font-size:.9rem; margin-top:6px}
-    .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .stat{background:var(--soft); border-radius:12px; padding:14px}
-    .stat .k{color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.5px}
-    .stat .v{font-size:1.4rem; font-weight:700; margin-top:2px}
-    .stat .v small{font-size:.8rem; color:var(--muted); font-weight:400}
-    h2{font-size:.95rem; color:var(--accent); margin:0 0 12px}
-    table{width:100%; border-collapse:collapse; font-size:.85rem}
-    th,td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--soft)}
-    th{color:var(--muted); font-weight:600; font-size:.72rem; text-transform:uppercase}
-    td.hit{color:var(--ok); font-weight:700}
-    input,button{font-size:1rem; padding:10px 12px; border-radius:10px; border:1px solid var(--soft)}
-    input{background:var(--bg); color:var(--txt); width:200px}
-    button{background:var(--accent); color:#04263a; font-weight:700; border:none; cursor:pointer}
-    .res{margin-top:12px; font-size:1.05rem}
-    .note{font-size:.8rem; color:var(--muted); background:rgba(56,189,248,.07);
-      border-left:3px solid var(--accent); padding:12px 14px; border-radius:8px; margin-top:6px}
-    .updated{color:var(--muted); font-size:.75rem; text-align:center; margin-top:8px}
-    a{color:var(--accent)}
+
+    /* ── Proximity bar ── */
+    #prox-track { background: var(--border); }
+    #prox-fill  {
+      background: linear-gradient(90deg, var(--brand) 0%, #a78bfa 100%);
+      animation: barGrow 1.1s cubic-bezier(.22,1,.36,1) .3s both;
+      transition: width .6s cubic-bezier(.22,1,.36,1);
+    }
+    .dark #prox-fill { background: linear-gradient(90deg, #818cf8, #c4b5fd); }
+
+    /* ── Distance pills ── */
+    .pill-exact  { background:#d1fae5; color:#065f46; }
+    .pill-close  { background:#ede9fe; color:#4338ca; }
+    .pill-mid    { background:#fef3c7; color:#92400e; }
+    .pill-far    { background:#fee2e2; color:#991b1b; }
+    .dark .pill-exact  { background:#064e3b; color:#6ee7b7; }
+    .dark .pill-close  { background:#312e81; color:#c4b5fd; }
+    .dark .pill-mid    { background:#78350f; color:#fde68a; }
+    .dark .pill-far    { background:#7f1d1d; color:#fca5a5; }
+
+    /* ── Table rows ── */
+    #hist-body tr { transition: background .15s; }
+    #hist-body tr:hover { background: var(--border); }
+
+    /* ── Stagger animation for rows ── */
+    #hist-body tr { animation: fadeUp .35s ease both; }
+    #hist-body tr:nth-child(1)  { animation-delay: .05s }
+    #hist-body tr:nth-child(2)  { animation-delay: .08s }
+    #hist-body tr:nth-child(3)  { animation-delay: .11s }
+    #hist-body tr:nth-child(4)  { animation-delay: .14s }
+    #hist-body tr:nth-child(5)  { animation-delay: .17s }
+    #hist-body tr:nth-child(6)  { animation-delay: .20s }
+    #hist-body tr:nth-child(7)  { animation-delay: .23s }
+    #hist-body tr:nth-child(8)  { animation-delay: .26s }
+    #hist-body tr:nth-child(9)  { animation-delay: .29s }
+    #hist-body tr:nth-child(10) { animation-delay: .32s }
+
+    /* ── Skeleton shimmer ── */
+    @keyframes shimmer {
+      from { background-position: -200% 0 }
+      to   { background-position:  200% 0 }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--border) 25%, var(--bg) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 8px;
+    }
+
+    /* ── Focus ring ── */
+    :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+    /* ── Scroll bar (webkit) ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
-<body>
-<div class="wrap">
-  <h1>Consórcio VW — <strong>Cota 3177</strong></h1>
-  <div class="sub">Acompanhamento da cota <strong id="cotaHdr">3177</strong> pela Loteria Federal da Caixa</div>
+<body class="min-h-screen">
 
-  <!-- Veredito principal -->
-  <div class="card">
-    <div id="loading" style="text-align:center;color:var(--muted)">Carregando dados oficiais…</div>
-    <div id="content" style="display:none">
-      <div id="verdict" class="verdict">
-        <div class="big" id="verdictBig">—</div>
-        <div class="small" id="verdictSmall"></div>
+  <!-- ── Nav strip ── -->
+  <header class="sticky top-0 z-20 border-b" style="background:var(--surface); border-color:var(--border)">
+    <div class="max-w-2xl mx-auto flex items-center justify-between px-4 py-3"
+         style="padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))">
+      <div class="flex items-center gap-2">
+        <span class="text-lg font-bold tracking-tight" style="color:var(--brand)">Consórcio VW</span>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:var(--brand);color:#fff">Cota 3177</span>
       </div>
-      <div class="grid">
-        <div class="stat"><div class="k">Último 1º prêmio</div><div class="v" id="fed">—</div></div>
-        <div class="stat"><div class="k">Alvo do consórcio</div><div class="v" id="alvo">—</div></div>
-        <div class="stat"><div class="k">Distância da sua cota</div><div class="v" id="dist">—</div></div>
-        <div class="stat"><div class="k">Concurso</div><div class="v" id="conc">—</div></div>
+      <button id="theme-btn" aria-label="Alternar tema"
+        class="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+        style="background:var(--border); color:var(--muted)">
+        <span id="theme-icon" class="text-base select-none">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main class="max-w-2xl mx-auto py-8 px-4 space-y-5"
+        style="padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))">
+
+    <!-- ── Hero card ── -->
+    <section id="hero-card"
+      class="rounded-2xl p-6 animate-fade-up"
+      style="background:var(--surface); border:1px solid var(--border)">
+
+      <!-- Skeleton state -->
+      <div id="hero-skeleton" class="space-y-3">
+        <div class="skeleton h-6 w-32"></div>
+        <div class="skeleton h-14 w-48"></div>
+        <div class="skeleton h-3 w-full rounded-full mt-4"></div>
+        <div class="skeleton h-3 w-2/3 rounded-full"></div>
       </div>
-      <div class="updated">Atualizado em <span id="data">—</span></div>
-    </div>
-  </div>
 
-  <!-- Estimativas (transparentes) -->
-  <div class="card" id="estCard" style="display:none">
-    <h2>Estimativas de longo prazo</h2>
-    <div class="grid">
-      <div class="stat"><div class="k">Chance por sorteio</div><div class="v" id="prob">—<small> / sorteio</small></div></div>
-      <div class="stat"><div class="k">Assembleias estimadas restantes</div><div class="v" id="esp">—</div></div>
-    </div>
-    <div class="note" id="premissasNote"></div>
-  </div>
+      <!-- Loaded state -->
+      <div id="hero-content" class="hidden">
+        <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color:var(--muted)">
+          Resultado — Concurso <span id="conc-hero">—</span>
+        </p>
 
-  <!-- Histórico -->
-  <div class="card" id="histCard" style="display:none">
-    <h2>Histórico de sorteios</h2>
-    <table>
-      <thead><tr><th>Concurso</th><th>Data</th><th>1º prêmio</th><th>Alvo</th><th>Distância</th></tr></thead>
-      <tbody id="histBody"></tbody>
-    </table>
-  </div>
+        <!-- Verdict -->
+        <div class="flex items-center gap-3 mb-4">
+          <div id="verdict-label"
+            class="text-4xl font-black tracking-tight animate-count-up"></div>
+          <div id="verdict-chip" class="hidden items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full animate-fade-in"></div>
+        </div>
 
-  <!-- Calculadora de verificação -->
-  <div class="card">
-    <h2>Calculadora de verificação (calibração)</h2>
-    <div style="display:flex; gap:8px; flex-wrap:wrap">
-      <input type="number" id="inputFed" placeholder="Digite o 1º prêmio (ex: 83358)">
-      <button onclick="verificar()">Calcular alvo</button>
-    </div>
-    <div class="res" id="resDebug"></div>
-    <div class="note">
-      Use isto com assembleias passadas: se o alvo calculado bater com o regulamento, a regra está calibrada. Se não bater, ajuste a regra de
-      dígitos em <code>bot_consorcio.py</code>.
-    </div>
-  </div>
+        <p class="text-sm mb-5" style="color:var(--muted)" id="verdict-sub"></p>
 
-  <div class="note">
-    <strong>Como ler estes números.</strong> O veredito "sorteada / não sorteada"
-    é exato — vem direto do resultado oficial. Já as <em>estimativas</em> são só
-    aproximações: cada sorteio da Federal é independente, então a distância de hoje
-    não prevê o sorteio da próxima semana. Não tome decisões de lance só com base nelas.
-  </div>
-</div>
+        <!-- Proximity bar -->
+        <div class="mb-1 flex justify-between text-xs font-medium" style="color:var(--muted)">
+          <span>Proximidade da cota</span>
+          <span id="prox-pct" class="font-bold" style="color:var(--brand)">—</span>
+        </div>
+        <div id="prox-track" class="h-2.5 rounded-full overflow-hidden mb-5">
+          <div id="prox-fill" class="h-full rounded-full" style="width:0%"></div>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-xl p-4" style="background:var(--bg)">
+            <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">1º Prêmio Federal</p>
+            <p class="text-xl font-bold font-mono tabular-nums" id="fed-hero">—</p>
+          </div>
+          <div class="rounded-xl p-4" style="background:var(--bg)">
+            <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">Alvo do Consórcio</p>
+            <p class="text-xl font-bold font-mono tabular-nums" id="alvo-hero">—</p>
+          </div>
+          <div class="rounded-xl p-4" style="background:var(--bg)">
+            <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">Distância da Cota</p>
+            <p class="text-xl font-bold font-mono tabular-nums" id="dist-hero">—</p>
+          </div>
+          <div class="rounded-xl p-4" style="background:var(--bg)">
+            <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">Data do Sorteio</p>
+            <p class="text-xl font-bold" id="data-hero">—</p>
+          </div>
+        </div>
+
+        <p class="text-xs mt-3 text-center" style="color:var(--muted)">
+          Atualizado em <span id="atualizado-em">—</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Estimativas ── -->
+    <section id="est-card" class="hidden rounded-2xl p-6 animate-fade-up"
+             style="background:var(--surface); border:1px solid var(--border); animation-delay:.07s">
+      <h2 class="text-xs font-semibold uppercase tracking-widest mb-4" style="color:var(--brand)">
+        Estimativas de longo prazo
+      </h2>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="rounded-xl p-4" style="background:var(--bg)">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">Chance por sorteio</p>
+          <p class="text-xl font-bold" id="prob-est">—</p>
+        </div>
+        <div class="rounded-xl p-4" style="background:var(--bg)">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:var(--muted)">Assembleias estimadas</p>
+          <p class="text-xl font-bold" id="esp-est">—</p>
+        </div>
+      </div>
+      <p class="text-xs rounded-xl px-4 py-3" style="background:var(--bg); color:var(--muted)" id="premissas-note"></p>
+    </section>
+
+    <!-- ── Histórico ── -->
+    <section id="hist-card" class="hidden rounded-2xl overflow-hidden animate-fade-up"
+             style="background:var(--surface); border:1px solid var(--border); animation-delay:.12s">
+      <div class="px-6 pt-6 pb-3">
+        <h2 class="text-xs font-semibold uppercase tracking-widest" style="color:var(--brand)">
+          Histórico de sorteios
+        </h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm" style="border-collapse:collapse">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border)">
+              <th class="text-left py-2.5 px-6 text-xs font-semibold uppercase tracking-wider" style="color:var(--muted)">Concurso</th>
+              <th class="text-left py-2.5 px-3 text-xs font-semibold uppercase tracking-wider" style="color:var(--muted)">Data</th>
+              <th class="text-left py-2.5 px-3 text-xs font-semibold uppercase tracking-wider" style="color:var(--muted)">1º prêmio</th>
+              <th class="text-left py-2.5 px-3 text-xs font-semibold uppercase tracking-wider" style="color:var(--muted)">Alvo</th>
+              <th class="text-right py-2.5 px-6 text-xs font-semibold uppercase tracking-wider" style="color:var(--muted)">Distância</th>
+            </tr>
+          </thead>
+          <tbody id="hist-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Calculadora ── -->
+    <section class="rounded-2xl p-6 animate-fade-up"
+             style="background:var(--surface); border:1px solid var(--border); animation-delay:.16s">
+      <h2 class="text-xs font-semibold uppercase tracking-widest mb-1" style="color:var(--brand)">
+        Calculadora de calibração
+      </h2>
+      <p class="text-sm mb-4" style="color:var(--muted)">
+        Insira o 1º prêmio de uma assembleia passada para confirmar a regra de conversão.
+      </p>
+      <div class="flex gap-2 flex-wrap">
+        <input type="number" id="calc-input"
+          placeholder="Ex: 095866"
+          class="flex-1 min-w-0 rounded-xl px-4 py-2.5 text-sm font-mono border focus:ring-2 outline-none transition"
+          style="background:var(--bg); color:var(--txt); border-color:var(--border); min-width:140px"
+          onkeydown="if(event.key==='Enter') calcVerify()">
+        <button onclick="calcVerify()"
+          class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-95"
+          style="background:var(--brand); color:#fff">
+          Calcular
+        </button>
+      </div>
+      <div id="calc-result" class="hidden mt-3 rounded-xl px-4 py-3 text-sm font-mono" style="background:var(--bg)"></div>
+    </section>
+
+    <!-- ── Aviso ── -->
+    <aside class="rounded-2xl px-5 py-4 text-sm animate-fade-up"
+           style="border:1px solid var(--border); border-left:3px solid var(--brand); background:var(--surface); color:var(--muted); animation-delay:.2s">
+      <strong style="color:var(--txt)">Como interpretar.</strong>
+      O veredito <em>contemplada / não contemplada</em> é exato — vem direto do resultado oficial.
+      As <em>estimativas</em> são modelos transparentes; cada sorteio da Federal é independente.
+      Não tome decisões de lance baseado apenas nelas.
+    </aside>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="text-center text-xs py-8" style="color:var(--muted)">
+    Dados via
+    <a href="https://loterias.caixa.gov.br" target="_blank" rel="noopener"
+       class="underline underline-offset-2 hover:opacity-80 transition-opacity">Loteria Federal da Caixa</a>
+    · atualizado automaticamente via GitHub Actions toda quarta e sábado.
+  </footer>
 
 <script>
-  // Regra de extração — DEVE ser idêntica à do bot_consorcio.py
-  var TOTAL_COTAS = 4875;
-  var COTA = 3177;
+  // ── Constants (overridden by dados.json) ──
+  var TOTAL_COTAS = 5000, COTA = 3177;
 
-  function extrairAlvo(num){
-    var s = String(num).replace(/\D/g,'');
-    s = s.padStart(5,'0').slice(-5);          // exatamente 5 dígitos
-    var bruto = parseInt(s.slice(1,5),10) || 0;
-    var alvo = bruto % TOTAL_COTAS;
-    if(alvo === 0) alvo = TOTAL_COTAS;
-    return alvo;
+  // ── Theme ──
+  var dark = false;
+  function applyTheme(d) {
+    dark = d;
+    document.documentElement.classList.toggle('dark', d);
+    document.getElementById('theme-icon').textContent = d ? '☀️' : '🌙';
+    try { localStorage.setItem('theme', d ? 'dark' : 'light'); } catch(e) {}
+  }
+  try {
+    var saved = localStorage.getItem('theme');
+    applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+  } catch(e) { applyTheme(false); }
+  document.getElementById('theme-btn').onclick = function() { applyTheme(!dark); };
+
+  // ── Pill class ──
+  function pillClass(d) {
+    if (d === 0)    return 'pill-exact';
+    if (d <= 300)   return 'pill-close';
+    if (d <= 1200)  return 'pill-mid';
+    return 'pill-far';
   }
 
-  function verificar(){
-    var val = document.getElementById('inputFed').value;
-    if(val === ''){ document.getElementById('resDebug').innerText = 'Digite um número.'; return; }
+  // ── extrairAlvo — identical to bot_consorcio.py ──
+  function extrairAlvo(num) {
+    var s = String(num).replace(/\D/g,'').padStart(5,'0').slice(-5);
+    var bruto = parseInt(s.slice(1,5), 10) || 0;
+    var alvo = bruto % TOTAL_COTAS;
+    return alvo === 0 ? TOTAL_COTAS : alvo;
+  }
+
+  // ── Calculator ──
+  function calcVerify() {
+    var val = document.getElementById('calc-input').value.trim();
+    var el = document.getElementById('calc-result');
+    el.classList.remove('hidden');
+    if (!val) { el.textContent = 'Digite um número.'; return; }
     var alvo = extrairAlvo(val);
     var dist = Math.abs(alvo - COTA);
-    var hit = (alvo === COTA) ? ' — essa seria a SUA cota!' : '';
-    document.getElementById('resDebug').innerText =
-      'Alvo calculado: ' + alvo + '  (distância da cota ' + COTA + ': ' + dist + ')' + hit;
+    var hit  = alvo === COTA ? '  🎯 ESSA É A SUA COTA!' : '';
+    el.textContent = 'Alvo: ' + alvo + '   Distância da cota ' + COTA + ': ' + dist + hit;
+    el.style.color = alvo === COTA ? 'var(--ok)' : 'var(--txt)';
   }
 
+  // ── Load dados.json ──
   fetch('dados.json?' + Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if(d && d.premissas && d.premissas.total_cotas){ TOTAL_COTAS = d.premissas.total_cotas; }
-      if(d && d.cota){ COTA = d.cota; document.getElementById('cotaHdr').innerText = d.cota; }
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.premissas && d.premissas.total_cotas) TOTAL_COTAS = d.premissas.total_cotas;
+      if (d.cota) COTA = d.cota;
 
-      // Sem dados reais ainda (seed sem concurso)
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
+      // Show content
+      document.getElementById('hero-skeleton').classList.add('hidden');
+      document.getElementById('hero-content').classList.remove('hidden');
 
-      var v = document.getElementById('verdict');
-      if(d.sorteada){
-        v.className = 'verdict sim';
-        document.getElementById('verdictBig').innerText = 'CONTEMPLADA! 🎯';
-        document.getElementById('verdictSmall').innerText = 'O alvo deste sorteio é exatamente a sua cota ' + d.cota + '.';
+      // Verdict
+      var chip = document.getElementById('verdict-chip');
+      var label = document.getElementById('verdict-label');
+      if (d.sorteada) {
+        label.textContent = 'CONTEMPLADA!';
+        label.style.color = 'var(--ok)';
+        chip.classList.remove('hidden');
+        chip.classList.add('flex');
+        chip.style.background = 'var(--ok)';
+        chip.style.color = '#fff';
+        chip.innerHTML = '<span class="w-2 h-2 rounded-full bg-white animate-pulse-dot"></span> Sim!';
+        document.getElementById('verdict-sub').textContent = 'O alvo deste sorteio é exatamente a sua cota ' + d.cota + '. Parabéns!';
       } else {
-        v.className = 'verdict nao';
-        document.getElementById('verdictBig').innerText = 'Ainda não';
-        document.getElementById('verdictSmall').innerText = 'O alvo deste sorteio não foi a sua cota.';
+        label.textContent = 'Ainda não';
+        label.style.color = 'var(--txt)';
+        chip.classList.remove('hidden');
+        chip.classList.add('flex');
+        chip.style.background = 'var(--border)';
+        chip.style.color = 'var(--muted)';
+        chip.textContent = 'Não contemplada';
+        document.getElementById('verdict-sub').textContent = 'O alvo deste sorteio não foi a cota 3177. Cada sorteio é independente.';
       }
 
-      document.getElementById('fed').innerText  = d.federal_original || '—';
-      document.getElementById('alvo').innerText = d.alvo != null ? d.alvo : '—';
-      document.getElementById('dist').innerText = d.distancia != null ? d.distancia : '—';
-      document.getElementById('conc').innerText = d.concurso || '—';
-      document.getElementById('data').innerText = d.atualizado_em || '—';
+      // Concurso / stats
+      document.getElementById('conc-hero').textContent = d.concurso || '—';
+      document.getElementById('fed-hero').textContent  = d.federal_original || '—';
+      document.getElementById('alvo-hero').textContent = d.alvo != null ? d.alvo : '—';
+      document.getElementById('dist-hero').textContent = d.distancia != null ? d.distancia : '—';
+      document.getElementById('data-hero').textContent = d.data_sorteio || '—';
+      document.getElementById('atualizado-em').textContent = d.atualizado_em || '—';
+
+      // Proximity bar
+      if (d.distancia != null) {
+        var pct = Math.max(3, Math.round((1 - d.distancia / TOTAL_COTAS) * 100));
+        document.getElementById('prox-fill').style.width = pct + '%';
+        document.getElementById('prox-pct').textContent = pct + '%';
+      }
 
       // Estimativas
-      if(d.prob_exata_por_sorteio_pct != null){
-        document.getElementById('estCard').style.display = 'block';
-        document.getElementById('prob').innerHTML = d.prob_exata_por_sorteio_pct + '%<small> / sorteio</small>';
-        document.getElementById('esp').innerText = d.assembleias_esperadas_restantes != null
-          ? d.assembleias_esperadas_restantes : '—';
-        if(d.premissas){
-          document.getElementById('premissasNote').innerText =
-            'Premissas: grupo de ' + d.premissas.total_cotas + ' cotas, vacância de ' +
-            Math.round(d.premissas.vacancia*100) + '% (~' + d.premissas.cotas_ativas_estimadas +
-            ' cotas ativas) e ' + d.premissas.contemplados_por_assembleia +
-            ' contemplados por assembleia. Edite esses valores em bot_consorcio.py.';
+      if (d.prob_exata_por_sorteio_pct != null) {
+        document.getElementById('est-card').classList.remove('hidden');
+        document.getElementById('prob-est').textContent = d.prob_exata_por_sorteio_pct + '% / sorteio';
+        document.getElementById('esp-est').textContent  = d.assembleias_esperadas_restantes != null ? d.assembleias_esperadas_restantes + ' assembleias' : '—';
+        if (d.premissas) {
+          document.getElementById('premissas-note').textContent =
+            'Premissas: grupo de ' + d.premissas.total_cotas + ' cotas · vacância ' +
+            Math.round(d.premissas.vacancia * 100) + '% (~' + d.premissas.cotas_ativas_estimadas +
+            ' cotas ativas) · ' + d.premissas.contemplados_por_assembleia + ' contemplados/assembleia.';
         }
       }
 
       // Histórico
-      if(d.historico && d.historico.length){
-        document.getElementById('histCard').style.display = 'block';
-        var body = document.getElementById('histBody');
-        body.innerHTML = '';
-        d.historico.forEach(function(h){
+      if (d.historico && d.historico.length) {
+        document.getElementById('hist-card').classList.remove('hidden');
+        var body = document.getElementById('hist-body');
+        d.historico.forEach(function(h) {
+          var dist = h.distancia != null ? h.distancia : null;
+          var pc = dist != null ? pillClass(dist) : 'pill-far';
           var tr = document.createElement('tr');
+          tr.style.borderBottom = '1px solid var(--border)';
           tr.innerHTML =
-            '<td>' + (h.concurso||'—') + '</td>' +
-            '<td>' + (h.data_sorteio||h.data||'—') + '</td>' +
-            '<td>' + (h.federal_original||h.federal||'—') + '</td>' +
-            '<td' + (h.sorteada?' class="hit"':'') + '>' + (h.alvo!=null?h.alvo:'—') + '</td>' +
-            '<td>' + (h.distancia!=null?h.distancia:'—') + '</td>';
+            '<td class="py-3 pl-6 pr-3 font-mono text-xs tabular-nums font-semibold">' + (h.concurso || '—') + '</td>' +
+            '<td class="py-3 px-3 text-xs" style="color:var(--muted)">' + (h.data_sorteio || h.data || '—') + '</td>' +
+            '<td class="py-3 px-3 font-mono text-xs tabular-nums">' + (h.federal_original || h.federal || '—') + '</td>' +
+            '<td class="py-3 px-3 font-mono text-xs tabular-nums font-bold"' + (h.sorteada ? ' style="color:var(--ok)"' : '') + '>' + (h.alvo != null ? h.alvo : '—') + '</td>' +
+            '<td class="py-3 pl-3 pr-6 text-right"><span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ' + pc + '">' + (dist != null ? dist : '—') + '</span></td>';
           body.appendChild(tr);
         });
       }
     })
-    .catch(function(){
-      document.getElementById('loading').innerText =
-        'Ainda não há dados. O robô (GitHub Actions) gera o dados.json no próximo sorteio.';
+    .catch(function() {
+      document.getElementById('hero-skeleton').classList.add('hidden');
+      document.getElementById('hero-content').classList.remove('hidden');
+      document.getElementById('verdict-label').textContent = 'Aguardando dados';
+      document.getElementById('verdict-sub').textContent = 'O GitHub Actions atualiza dados.json no próximo sorteio (quarta ou sábado).';
     });
 </script>
 </body>
