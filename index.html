@@ -3,200 +3,667 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consórcio VW — Cota 3177</title>
+
+  <!-- ── SEO ─────────────────────────────────────────────────────────── -->
+  <title>Consórcio VW – Cota 3177 | Acompanhamento por Sorteio</title>
+  <meta name="description" content="Acompanhe em tempo real se a cota 3177 do Consórcio Nacional Volkswagen foi contemplada pelo sorteio da Loteria Federal da Caixa. Histórico completo, distância do alvo e estimativas transparentes de contemplação.">
+  <meta name="keywords" content="consórcio volkswagen, cota 3177, loteria federal caixa, contemplação consórcio, sorteio consórcio VW, acompanhamento cota, contemplado por sorteio">
+  <meta name="author" content="Acompanhamento Consórcio Nacional Volkswagen">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4F6EF7">
+
+  <!-- ── Open Graph ─────────────────────────────────────────────────── -->
+  <meta property="og:title" content="Consórcio VW – Cota 3177 | Acompanhamento por Sorteio">
+  <meta property="og:description" content="Saiba se sua cota foi contemplada no último sorteio da Loteria Federal. Atualizado automaticamente após cada assembleia.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- ── Structured Data ───────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Acompanhamento Consórcio VW – Cota 3177",
+    "description": "Ferramenta de acompanhamento de contemplação por sorteio da Loteria Federal para o Consórcio Nacional Volkswagen",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <!-- ── Fonte ─────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#0f172a; --card:#1e293b; --soft:#334155; --txt:#e2e8f0;
-      --muted:#94a3b8; --ok:#22c55e; --no:#f43f5e; --accent:#38bdf8;
+    /* ── Design tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:          #F4F6FF;
+      --surface:     #FFFFFF;
+      --surface2:    #EEF1FF;
+      --primary:     #4F6EF7;
+      --primary-lt:  #E8ECFF;
+      --primary-dk:  #3A54D4;
+      --success:     #10B981;
+      --success-lt:  #ECFDF5;
+      --amber:       #F59E0B;
+      --amber-lt:    #FFFBEB;
+      --text:        #1A1F36;
+      --text-2:      #374151;
+      --muted:       #6B7280;
+      --border:      #E5E9F4;
+      --shadow:      0 2px 14px rgba(79,110,247,.08);
+      --shadow-lg:   0 8px 32px rgba(79,110,247,.13);
+      --r:           20px;
+      --r-sm:        12px;
     }
-    *{box-sizing:border-box}
-    body{
-      font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg); color:var(--txt); margin:0; padding:24px;
-      line-height:1.5;
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrap{max-width:720px; margin:0 auto}
-    h1{font-size:1.25rem; font-weight:700; margin:0 0 4px}
-    .sub{color:var(--muted); font-size:.85rem; margin-bottom:20px}
-    .card{
-      background:var(--card); border:1px solid var(--soft); border-radius:16px;
-      padding:22px; margin-bottom:18px;
+
+    /* ── Wrapper ───────────────────────────────────────────────────── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
     }
-    .verdict{text-align:center; padding:26px 18px}
-    .verdict .big{font-size:2.1rem; font-weight:800; letter-spacing:.5px}
-    .verdict.sim .big{color:var(--ok)}
-    .verdict.nao .big{color:var(--no)}
-    .verdict .small{color:var(--muted); font-size:.9rem; margin-top:6px}
-    .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .stat{background:var(--soft); border-radius:12px; padding:14px}
-    .stat .k{color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.5px}
-    .stat .v{font-size:1.4rem; font-weight:700; margin-top:2px}
-    .stat .v small{font-size:.8rem; color:var(--muted); font-weight:400}
-    h2{font-size:.95rem; color:var(--accent); margin:0 0 12px}
-    table{width:100%; border-collapse:collapse; font-size:.85rem}
-    th,td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--soft)}
-    th{color:var(--muted); font-weight:600; font-size:.72rem; text-transform:uppercase}
-    td.hit{color:var(--ok); font-weight:700}
-    input,button{font-size:1rem; padding:10px 12px; border-radius:10px; border:1px solid var(--soft)}
-    input{background:var(--bg); color:var(--txt); width:200px}
-    button{background:var(--accent); color:#04263a; font-weight:700; border:none; cursor:pointer}
-    .res{margin-top:12px; font-size:1.05rem}
-    .note{font-size:.8rem; color:var(--muted); background:rgba(56,189,248,.07);
-      border-left:3px solid var(--accent); padding:12px 14px; border-radius:8px; margin-top:6px}
-    .updated{color:var(--muted); font-size:.75rem; text-align:center; margin-top:8px}
-    a{color:var(--accent)}
+
+    /* ── Header ────────────────────────────────────────────────────── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .site-logo {
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--primary) 0%, #7C93FF 100%);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(79,110,247,.32);
+    }
+    .site-header h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .site-header p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Status hero ──────────────────────────────────────────────── */
+    .status-hero {
+      background: var(--surface);
+      border-radius: var(--r);
+      padding: 36px 24px 30px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .status-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), #7C93FF, #A78BFA);
+      border-radius: var(--r) var(--r) 0 0;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin-bottom: 18px;
+    }
+    .status-chip.sim  { background: var(--success-lt); color: #059669; }
+    .status-chip.nao  { background: var(--primary-lt); color: var(--primary-dk); }
+    .status-chip .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .hero-emoji  { font-size: 3.8rem; line-height: 1; display: block; margin-bottom: 14px; }
+    .hero-title  { font-size: 1.65rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .hero-sub    { font-size: 0.88rem; color: var(--muted); max-width: 360px; margin: 0 auto 22px; }
+
+    /* Barra de proximidade */
+    .prox-wrap { max-width: 420px; margin: 0 auto; }
+    .prox-track {
+      background: var(--surface2);
+      border-radius: 100px;
+      height: 9px;
+      overflow: hidden;
+    }
+    .prox-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--primary), #7C93FF);
+      transition: width .9s cubic-bezier(.25,.8,.25,1);
+    }
+    .prox-fill.sim { background: linear-gradient(90deg, var(--success), #34D399); }
+    .prox-label { font-size: 0.74rem; color: var(--muted); margin-top: 8px; }
+
+    /* ── Cards de dados ──────────────────────────────────────────── */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .data-card {
+      background: var(--surface);
+      border-radius: var(--r-sm);
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .data-card .lbl {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .55px;
+      margin-bottom: 5px;
+    }
+    .data-card .val {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .data-card .hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Section card ─────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border-radius: var(--r);
+      padding: 24px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .card-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .ci-blue   { background: var(--primary-lt); }
+    .ci-green  { background: var(--success-lt); }
+    .ci-amber  { background: var(--amber-lt); }
+    .card-head h2   { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .card-head .sub { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+
+    /* Est. interna */
+    .est-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .est-box {
+      background: var(--surface2);
+      border-radius: var(--r-sm);
+      padding: 16px 14px;
+    }
+    .est-box .lbl { font-size: .68rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing:.5px; margin-bottom:4px; }
+    .est-box .val { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .premise-note {
+      background: var(--surface2);
+      border-radius: var(--r-sm);
+      padding: 13px 15px;
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Tabela de histórico ─────────────────────────────────────── */
+    .hist-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .hist-table th {
+      text-align: left;
+      padding: 0 8px 10px;
+      font-size: .68rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .45px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hist-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .hist-table tr:last-child td { border-bottom: none; }
+    .hist-table tbody tr:hover td { background: var(--surface2); transition: background .15s; }
+
+    /* Pílula de distância */
+    .dpill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: .74rem;
+    }
+    .dpill.exact { background: #ECFDF5; color: #059669; }
+    .dpill.close { background: #EFF6FF; color: #3B82F6; }
+    .dpill.mid   { background: #FFF7ED; color: #C2410C; }
+    .dpill.far   { background: #FEF2F2; color: #DC2626; }
+
+    /* Indicador acima/abaixo */
+    .pos-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .pos-dot.up   { background: var(--primary); }
+    .pos-dot.down { background: var(--amber); }
+
+    /* ── Calculadora ─────────────────────────────────────────────── */
+    .calc-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .calc-input {
+      flex: 1; min-width: 175px;
+      font-size: .92rem; font-family: inherit;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      background: var(--surface2);
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .calc-input:focus { border-color: var(--primary); }
+    .calc-btn {
+      font-size: .88rem; font-family: inherit; font-weight: 600;
+      padding: 12px 22px;
+      border-radius: var(--r-sm);
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: background .18s, transform .1s;
+      white-space: nowrap;
+    }
+    .calc-btn:hover  { background: var(--primary-dk); }
+    .calc-btn:active { transform: scale(.97); }
+    .calc-result {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: var(--surface2);
+      border-radius: var(--r-sm);
+      font-size: .88rem;
+      color: var(--text-2);
+      display: none;
+    }
+    .calc-result.on { display: block; }
+
+    /* ── Info note ───────────────────────────────────────────────── */
+    .info-note {
+      background: var(--primary-lt);
+      border-radius: var(--r-sm);
+      padding: 16px 18px;
+      font-size: .8rem;
+      color: var(--primary-dk);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .info-note strong { color: var(--primary-dk); }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: .73rem;
+      color: var(--muted);
+    }
+    .site-footer a { color: var(--primary); text-decoration: none; }
+
+    /* ── Loading ─────────────────────────────────────────────────── */
+    .loading {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .loading span { animation: blink 1.4s ease-in-out infinite; display: inline-block; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .data-grid  { gap: 8px; }
+      .est-inner  { gap: 8px; }
+      .hero-title { font-size: 1.35rem; }
+      .data-card .val { font-size: 1.25rem; }
+    }
   </style>
 </head>
+
 <body>
-<div class="wrap">
-  <h1>Consórcio VW — <strong>Cota 3177</strong></h1>
-  <div class="sub">Acompanhamento da cota <strong id="cotaHdr">3177</strong> pela Loteria Federal da Caixa</div>
+<div class="page">
 
-  <!-- Veredito principal -->
-  <div class="card">
-    <div id="loading" style="text-align:center;color:var(--muted)">Carregando dados oficiais…</div>
-    <div id="content" style="display:none">
-      <div id="verdict" class="verdict">
-        <div class="big" id="verdictBig">—</div>
-        <div class="small" id="verdictSmall"></div>
+  <!-- ── Cabeçalho ─────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="site-logo" role="img" aria-label="Painel do consórcio">🚗</div>
+    <div>
+      <h1>Consórcio VW &nbsp;·&nbsp; Cota <span id="cotaHdr">3177</span></h1>
+      <p>Acompanhamento do resultado da Loteria Federal da Caixa</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Status principal ─────────────────────────────────────────── -->
+    <section aria-label="Resultado do último sorteio">
+      <div class="status-hero" id="statusHero">
+
+        <!-- loading -->
+        <div class="loading" id="loadingMsg">
+          <span>Carregando resultado do sorteio…</span>
+        </div>
+
+        <!-- conteúdo real -->
+        <div id="statusContent" style="display:none">
+          <div class="status-chip nao" id="statusChip">
+            <span class="dot"></span>
+            <span id="chipText">—</span>
+          </div>
+
+          <span class="hero-emoji" id="heroEmoji" aria-hidden="true">⏳</span>
+          <h2 class="hero-title" id="heroTitle">—</h2>
+          <p  class="hero-sub"   id="heroSub"></p>
+
+          <div class="prox-wrap">
+            <div class="prox-track">
+              <div class="prox-fill" id="proxFill" style="width:0%"></div>
+            </div>
+            <p class="prox-label" id="proxLabel"></p>
+          </div>
+        </div>
+
       </div>
-      <div class="grid">
-        <div class="stat"><div class="k">Último 1º prêmio</div><div class="v" id="fed">—</div></div>
-        <div class="stat"><div class="k">Alvo do consórcio</div><div class="v" id="alvo">—</div></div>
-        <div class="stat"><div class="k">Distância da sua cota</div><div class="v" id="dist">—</div></div>
-        <div class="stat"><div class="k">Concurso</div><div class="v" id="conc">—</div></div>
+    </section>
+
+    <!-- ── Dados do sorteio ──────────────────────────────────────────── -->
+    <section aria-label="Dados do último sorteio" id="statsSection" style="display:none">
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="lbl">Concurso Federal</div>
+          <div class="val" id="dConcurso">—</div>
+          <div class="hint" id="dData">—</div>
+        </div>
+        <div class="data-card">
+          <div class="lbl">1º Prêmio sorteado</div>
+          <div class="val" id="dFed">—</div>
+          <div class="hint">número oficial</div>
+        </div>
+        <div class="data-card">
+          <div class="lbl">Alvo do consórcio</div>
+          <div class="val" id="dAlvo">—</div>
+          <div class="hint">cota equivalente</div>
+        </div>
+        <div class="data-card">
+          <div class="lbl">Distância da sua cota</div>
+          <div class="val" id="dDist">—</div>
+          <div class="hint">cotas de diferença</div>
+        </div>
       </div>
-      <div class="updated">Atualizado em <span id="data">—</span></div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Estimativas (transparentes) -->
-  <div class="card" id="estCard" style="display:none">
-    <h2>Estimativas de longo prazo</h2>
-    <div class="grid">
-      <div class="stat"><div class="k">Chance por sorteio</div><div class="v" id="prob">—<small> / sorteio</small></div></div>
-      <div class="stat"><div class="k">Assembleias estimadas restantes</div><div class="v" id="esp">—</div></div>
-    </div>
-    <div class="note" id="premissasNote"></div>
-  </div>
+    <!-- ── Estimativas ───────────────────────────────────────────────── -->
+    <section aria-label="Estimativas de longo prazo" class="card" id="estSection" style="display:none">
+      <div class="card-head">
+        <div class="card-icon ci-green">📊</div>
+        <div>
+          <h2>Estimativas</h2>
+          <p class="sub">Projeções baseadas nas premissas do grupo</p>
+        </div>
+      </div>
+      <div class="est-inner">
+        <div class="est-box">
+          <div class="lbl">Chance por sorteio</div>
+          <div class="val" id="eProb">—</div>
+        </div>
+        <div class="est-box">
+          <div class="lbl">Assembleias estimadas</div>
+          <div class="val" id="eAss">—</div>
+        </div>
+      </div>
+      <div class="premise-note" id="premissaNote"></div>
+    </section>
 
-  <!-- Histórico -->
-  <div class="card" id="histCard" style="display:none">
-    <h2>Histórico de sorteios</h2>
-    <table>
-      <thead><tr><th>Concurso</th><th>Data</th><th>1º prêmio</th><th>Alvo</th><th>Distância</th></tr></thead>
-      <tbody id="histBody"></tbody>
-    </table>
-  </div>
+    <!-- ── Histórico ─────────────────────────────────────────────────── -->
+    <section aria-label="Histórico de sorteios" class="card" id="histSection" style="display:none">
+      <div class="card-head">
+        <div class="card-icon ci-blue">📋</div>
+        <div>
+          <h2>Histórico de sorteios</h2>
+          <p class="sub">Últimos resultados acompanhados</p>
+        </div>
+      </div>
+      <table class="hist-table">
+        <thead>
+          <tr>
+            <th scope="col">Concurso</th>
+            <th scope="col">Data</th>
+            <th scope="col">1º Prêmio</th>
+            <th scope="col">Alvo</th>
+            <th scope="col">Distância</th>
+          </tr>
+        </thead>
+        <tbody id="histBody"></tbody>
+      </table>
+    </section>
 
-  <!-- Calculadora de verificação -->
-  <div class="card">
-    <h2>Calculadora de verificação (calibração)</h2>
-    <div style="display:flex; gap:8px; flex-wrap:wrap">
-      <input type="number" id="inputFed" placeholder="Digite o 1º prêmio (ex: 83358)">
-      <button onclick="verificar()">Calcular alvo</button>
-    </div>
-    <div class="res" id="resDebug"></div>
-    <div class="note">
-      Use isto com assembleias passadas: se o alvo calculado bater com o regulamento, a regra está calibrada. Se não bater, ajuste a regra de
-      dígitos em <code>bot_consorcio.py</code>.
-    </div>
-  </div>
+    <!-- ── Calculadora ───────────────────────────────────────────────── -->
+    <section aria-label="Calculadora de verificação" class="card">
+      <div class="card-head">
+        <div class="card-icon ci-amber">🧮</div>
+        <div>
+          <h2>Calculadora de verificação</h2>
+          <p class="sub">Confira o alvo de qualquer 1º prêmio</p>
+        </div>
+      </div>
+      <div class="calc-row">
+        <input
+          type="number"
+          class="calc-input"
+          id="inputFed"
+          placeholder="Ex: 053952"
+          aria-label="Digite o 1º prêmio da Loteria Federal"
+        >
+        <button class="calc-btn" onclick="verificar()">Calcular alvo</button>
+      </div>
+      <div class="calc-result" id="calcResult" role="status" aria-live="polite"></div>
+    </section>
 
-  <div class="note">
-    <strong>Como ler estes números.</strong> O veredito "sorteada / não sorteada"
-    é exato — vem direto do resultado oficial. Já as <em>estimativas</em> são só
-    aproximações: cada sorteio da Federal é independente, então a distância de hoje
-    não prevê o sorteio da próxima semana. Não tome decisões de lance só com base nelas.
-  </div>
-</div>
+    <!-- ── Nota explicativa ──────────────────────────────────────────── -->
+    <aside aria-label="Como interpretar os dados">
+      <div class="info-note">
+        <strong>Como ler este painel.</strong> O resultado "contemplada / não contemplada" é
+        determinístico — calculado diretamente do 1º prêmio oficial da Loteria Federal.
+        As <em>estimativas</em> são aproximações: cada sorteio é independente, por isso
+        a distância desta semana não prevê o próximo. Não tome decisões de lance exclusivamente
+        com base nesses números.
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ── Rodapé ────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>
+      Atualizado em <time id="updatedAt">—</time>
+      &nbsp;·&nbsp;
+      Dados via <a href="https://loterias.caixa.gov.br" target="_blank" rel="noopener noreferrer">Loteria Federal Caixa</a>
+    </p>
+  </footer>
+
+</div><!-- .page -->
 
 <script>
-  // Regra de extração — DEVE ser idêntica à do bot_consorcio.py
-  var TOTAL_COTAS = 5000;
-  var COTA = 3177;
+  'use strict';
 
-  function extrairAlvo(num){
-    var s = String(num).replace(/\D/g,'');
-    s = s.padStart(5,'0').slice(-5);          // exatamente 5 dígitos
-    var bruto = parseInt(s.slice(1,5),10) || 0;
-    var alvo = bruto % TOTAL_COTAS;
-    if(alvo === 0) alvo = TOTAL_COTAS;
-    return alvo;
+  var TOTAL_COTAS = 5000;
+  var COTA        = 3177;
+
+  /* Replica a regra do bot_consorcio.py */
+  function extrairAlvo(num) {
+    var s = String(num).replace(/\D/g, '');
+    s = s.padStart(5, '0').slice(-5);
+    var bruto = parseInt(s.slice(1, 5), 10) || 0;
+    var alvo  = bruto % TOTAL_COTAS;
+    return alvo === 0 ? TOTAL_COTAS : alvo;
   }
 
-  function verificar(){
-    var val = document.getElementById('inputFed').value;
-    if(val === ''){ document.getElementById('resDebug').innerText = 'Digite um número.'; return; }
+  /* Calculadora */
+  function verificar() {
+    var val = document.getElementById('inputFed').value.trim();
+    var el  = document.getElementById('calcResult');
+    el.className = 'calc-result on';
+    if (!val) {
+      el.innerHTML = '⚠️ Digite o número do 1º prêmio para calcular.';
+      return;
+    }
     var alvo = extrairAlvo(val);
     var dist = Math.abs(alvo - COTA);
-    var hit = (alvo === COTA) ? ' — essa seria a SUA cota!' : '';
-    document.getElementById('resDebug').innerText =
-      'Alvo calculado: ' + alvo + '  (distância da cota ' + COTA + ': ' + dist + ')' + hit;
+    el.innerHTML = alvo === COTA
+      ? '🎯 <strong>Alvo = ' + alvo + '</strong> — exatamente a sua cota! 🎉'
+      : '🔢 Alvo calculado: <strong>' + alvo + '</strong>&emsp;Distância da cota ' + COTA + ': <strong>' + dist + '</strong>';
   }
 
+  /* Classe da pílula de distância */
+  function dpillClass(d) {
+    if (d === 0)     return 'exact';
+    if (d <= 300)    return 'close';
+    if (d <= 1200)   return 'mid';
+    return 'far';
+  }
+
+  /* Carrega dados.json */
   fetch('dados.json?' + Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if(d && d.premissas && d.premissas.total_cotas){ TOTAL_COTAS = d.premissas.total_cotas; }
-      if(d && d.cota){ COTA = d.cota; document.getElementById('cotaHdr').innerText = d.cota; }
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
 
-      // Sem dados reais ainda (seed sem concurso)
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-
-      var v = document.getElementById('verdict');
-      if(d.sorteada){
-        v.className = 'verdict sim';
-        document.getElementById('verdictBig').innerText = 'CONTEMPLADA! 🎯';
-        document.getElementById('verdictSmall').innerText = 'O alvo deste sorteio é exatamente a sua cota ' + d.cota + '.';
-      } else {
-        v.className = 'verdict nao';
-        document.getElementById('verdictBig').innerText = 'Ainda não';
-        document.getElementById('verdictSmall').innerText = 'O alvo deste sorteio não foi a sua cota.';
+      if (d.premissas && d.premissas.total_cotas) TOTAL_COTAS = d.premissas.total_cotas;
+      if (d.cota) {
+        COTA = d.cota;
+        document.getElementById('cotaHdr').textContent = d.cota;
       }
 
-      document.getElementById('fed').innerText  = d.federal_original || '—';
-      document.getElementById('alvo').innerText = d.alvo != null ? d.alvo : '—';
-      document.getElementById('dist').innerText = d.distancia != null ? d.distancia : '—';
-      document.getElementById('conc').innerText = d.concurso || '—';
-      document.getElementById('data').innerText = d.atualizado_em || '—';
+      /* Mostra o conteúdo */
+      document.getElementById('loadingMsg').style.display    = 'none';
+      document.getElementById('statusContent').style.display = 'block';
+      document.getElementById('statsSection').style.display  = 'block';
 
-      // Estimativas
-      if(d.prob_exata_por_sorteio_pct != null){
-        document.getElementById('estCard').style.display = 'block';
-        document.getElementById('prob').innerHTML = d.prob_exata_por_sorteio_pct + '%<small> / sorteio</small>';
-        document.getElementById('esp').innerText = d.assembleias_esperadas_restantes != null
+      var chip  = document.getElementById('statusChip');
+      var fill  = document.getElementById('proxFill');
+
+      if (d.sorteada) {
+        chip.className = 'status-chip sim';
+        document.getElementById('chipText').textContent   = 'Contemplada por sorteio! 🎉';
+        document.getElementById('heroEmoji').textContent  = '🎉';
+        document.getElementById('heroTitle').textContent  = 'Sua cota foi contemplada!';
+        document.getElementById('heroSub').textContent    = 'O alvo deste sorteio coincidiu exatamente com a sua cota ' + d.cota + '. Parabéns!';
+        fill.className   = 'prox-fill sim';
+        fill.style.width = '100%';
+        document.getElementById('proxLabel').textContent  = 'Correspondência exata — cota ' + d.cota;
+      } else {
+        chip.className = 'status-chip nao';
+        document.getElementById('chipText').textContent   = 'Concurso #' + (d.concurso || '—') + ' · não contemplada';
+        document.getElementById('heroEmoji').textContent  = '⏳';
+        document.getElementById('heroTitle').textContent  = 'Ainda não dessa vez';
+        var dist = d.distancia || 0;
+        document.getElementById('heroSub').textContent    =
+          'O alvo ' + (d.alvo != null ? d.alvo : '—') + ' ficou ' + dist +
+          ' cotas de distância da sua cota ' + (d.cota || COTA) + '.';
+        var pct = Math.max(4, Math.round((1 - dist / TOTAL_COTAS) * 100));
+        fill.style.width = pct + '%';
+        document.getElementById('proxLabel').textContent  =
+          'Proximidade: ' + pct + '% — quanto maior, mais perto estava';
+      }
+
+      /* Stats */
+      document.getElementById('dConcurso').textContent = d.concurso || '—';
+      document.getElementById('dData').textContent     = d.data_sorteio || (d.atualizado_em ? 'atualizado ' + d.atualizado_em : '—');
+      document.getElementById('dFed').textContent      = d.federal_original || '—';
+      document.getElementById('dAlvo').textContent     = d.alvo != null ? d.alvo : '—';
+      document.getElementById('dDist').textContent     = d.distancia != null ? d.distancia : '—';
+      document.getElementById('updatedAt').textContent = d.atualizado_em || '—';
+
+      /* Estimativas */
+      if (d.prob_exata_por_sorteio_pct != null) {
+        document.getElementById('estSection').style.display = 'block';
+        document.getElementById('eProb').textContent = d.prob_exata_por_sorteio_pct + '%';
+        document.getElementById('eAss').textContent  = d.assembleias_esperadas_restantes != null
           ? d.assembleias_esperadas_restantes : '—';
-        if(d.premissas){
-          document.getElementById('premissasNote').innerText =
-            'Premissas: grupo de ' + d.premissas.total_cotas + ' cotas, vacância de ' +
-            Math.round(d.premissas.vacancia*100) + '% (~' + d.premissas.cotas_ativas_estimadas +
-            ' cotas ativas) e ' + d.premissas.contemplados_por_assembleia +
-            ' contemplados por assembleia. Edite esses valores em bot_consorcio.py.';
+        if (d.premissas) {
+          document.getElementById('premissaNote').textContent =
+            'Premissas: grupo de ' + d.premissas.total_cotas + ' cotas · vacância de ' +
+            Math.round(d.premissas.vacancia * 100) + '% (~' + d.premissas.cotas_ativas_estimadas +
+            ' cotas ativas) · ' + d.premissas.contemplados_por_assembleia +
+            ' contemplados por assembleia. Ajuste em bot_consorcio.py se necessário.';
         }
       }
 
-      // Histórico
-      if(d.historico && d.historico.length){
-        document.getElementById('histCard').style.display = 'block';
+      /* Histórico */
+      if (d.historico && d.historico.length) {
+        document.getElementById('histSection').style.display = 'block';
         var body = document.getElementById('histBody');
         body.innerHTML = '';
-        d.historico.forEach(function(h){
+        d.historico.forEach(function(h) {
+          var acima = h.alvo != null && h.alvo > COTA;
+          var dist2 = h.distancia != null ? h.distancia : 9999;
           var tr = document.createElement('tr');
           tr.innerHTML =
-            '<td>' + (h.concurso||'—') + '</td>' +
-            '<td>' + (h.data_sorteio||'—') + '</td>' +
-            '<td>' + (h.federal_original||'—') + '</td>' +
-            '<td' + (h.sorteada?' class="hit"':'') + '>' + (h.alvo!=null?h.alvo:'—') + '</td>' +
-            '<td>' + (h.distancia!=null?h.distancia:'—') + '</td>';
+            '<td><strong>' + (h.concurso || '—') + '</strong></td>' +
+            '<td>' + (h.data_sorteio || '—') + '</td>' +
+            '<td style="font-variant-numeric:tabular-nums">' + (h.federal_original || '—') + '</td>' +
+            '<td>' +
+              '<span class="pos-dot ' + (acima ? 'up' : 'down') + '" title="' + (acima ? 'acima da cota' : 'abaixo da cota') + '"></span>' +
+              (h.alvo != null ? h.alvo : '—') +
+            '</td>' +
+            '<td><span class="dpill ' + dpillClass(dist2) + '">' + (h.distancia != null ? h.distancia : '—') + '</span></td>';
           body.appendChild(tr);
         });
       }
+
     })
-    .catch(function(){
-      document.getElementById('loading').innerText =
-        'Ainda não há dados. O robô (GitHub Actions) gera o dados.json no próximo sorteio.';
+    .catch(function() {
+      document.getElementById('loadingMsg').innerHTML =
+        '<span>Dados não disponíveis ainda. O robô (GitHub Actions) atualiza após cada sorteio.</span>';
     });
 </script>
 </body>
